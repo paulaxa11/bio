@@ -1,7 +1,6 @@
 import time
 
-import matplotlib.pyplot as plt
-plt.style.use('ggplot')
+
 
 from itertools import chain
 
@@ -160,18 +159,5 @@ _y = [s.parameters['c2'] for s in rs.cv_results_]
 _c = [s.mean_validation_score for s in rs.cv_results_]
 print(time.time()-ttt)
 
-fig = plt.figure()
-fig.set_size_inches(12, 12)
-ax = plt.gca()
-ax.set_yscale('log')
-ax.set_xscale('log')
-ax.set_xlabel('C1')
-ax.set_ylabel('C2')
-ax.set_title("Randomized Hyperparameter Search CV Results (min={:0.3}, max={:0.3})".format(
-    min(_c), max(_c)
-))
-
-ax.scatter(_x, _y, c=_c, s=60, alpha=0.9, edgecolors=[0,0,0])
 
 print("Dark blue => {:0.4}, dark red => {:0.4}".format(min(_c), max(_c)))
-plt.show()
